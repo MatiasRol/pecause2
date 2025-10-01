@@ -1,6 +1,5 @@
-
-import "@/global.css";
 import CustomText from "@/components/ui/CustomText";
+import "@/global.css";
 import { View } from "react-native";
 export default function Index() {
   return (

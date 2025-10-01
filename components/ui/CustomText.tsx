@@ -6,7 +6,7 @@ interface CustomTextProps{
     children: React.ReactNode;//Va dentro de la etiqueta
 }
 
-const CustomText = ({variant, dark =false, children}:CustomTextProps) => {
+const CustomText = ({variant, dark=false, children}:CustomTextProps) => {
   return (
      <Text className={styleSelector(variant,dark)}>
         {children}
@@ -19,9 +19,9 @@ function styleSelector(variant:any,dark:boolean){
     if(dark == true){
         style += "text-white "
     }else{
-        style += "text-[#0F626F] "
+        style += "text-white "
     }
-
+    
     switch(variant){
         case "small":
             return style + "font-semibold text-sm" ;
@@ -31,3 +31,5 @@ function styleSelector(variant:any,dark:boolean){
             return style + " font-semibold text-xl" ;
     }
 }
+
+export default CustomText
