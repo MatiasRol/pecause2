@@ -1,3 +1,4 @@
+import { router } from "expo-router";
 import React, { useState } from "react";
 import { ImageBackground, View } from "react-native";
 import Button from "../components/ui/Button";
@@ -16,6 +17,7 @@ export default function Index() {
     if (!haIniciadoSesion) {
       alert("Logeando");
       setHaIniciadoSesion(true);
+      router.push('/SettingsScreen');
     }
   }
 
@@ -47,10 +49,7 @@ export default function Index() {
           onChangeText={setPassword} 
         />
 
-        {/* Botón de Login */}
         <Button title="Iniciar sesión" onPress={handleLogin} />
-
-        {/* Botón de Registrar */}
         <Button title="Registrarse" onPress={handleRegister} />
 
         <View className="flex-row justify-between w-full">
@@ -59,6 +58,14 @@ export default function Index() {
             text="Recuperar" 
             dark={false} 
             onPress={() => console.log("Navegar a recuperar")} 
+          />
+        </View>
+
+        <View className="mt-6 w-full items-center">
+          <LinkText 
+            text="Ir a Home" 
+            dark={true} 
+            onPress={() => router.push('/principal')} 
           />
         </View>
       </View>
