@@ -1,5 +1,4 @@
-import { router, Stack } from "expo-router";
-import { Pressable, Text } from "react-native";
+import { Stack } from "expo-router";
 
 export default function RootLayout() {
   return (
@@ -8,36 +7,13 @@ export default function RootLayout() {
         name="index" 
         options={{ 
           title: "Bienvenido",
-          headerShown: true,
-          headerStyle: {
-            backgroundColor: '#000',
-          },
-          headerTintColor: '#fff',
-          headerTitleStyle: {
-            fontWeight: 'bold',
-          },
-          headerRight: () => (
-            <Pressable 
-              onPress={() => router.push('/principal')}
-              style={{ marginRight: 15 }}
-            >
-              <Text style={{ color: '#fff', fontSize: 16 }}>HOME</Text>
-            </Pressable>
-          ),
+          headerShown: false  // Sin header en el index
         }} 
       />
       <Stack.Screen 
-        name="Home" 
+        name="(home)" 
         options={{ 
-          title: "Home",
-          headerShown: true,
-          headerStyle: {
-            backgroundColor: '#000',
-          },
-          headerTintColor: '#fff',
-          headerTitleStyle: {
-            fontWeight: 'bold',
-          },
+          headerShown: false  // El grupo (home) maneja sus propios headers
         }} 
       />
     </Stack>

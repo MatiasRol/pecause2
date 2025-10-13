@@ -17,7 +17,7 @@ export default function Index() {
     if (!haIniciadoSesion) {
       alert("Logeando");
       setHaIniciadoSesion(true);
-      router.push('/SettingsScreen');
+      router.push('/(home)/principal');  // Navegar a home/principal
     }
   }
 
@@ -61,11 +61,12 @@ export default function Index() {
           />
         </View>
 
+        {/* Link para ir a Home */}
         <View className="mt-6 w-full items-center">
           <LinkText 
             text="Ir a Home" 
             dark={true} 
-            onPress={() => router.push('/principal')} 
+            onPress={() => router.push('/(home)/principal')} 
           />
         </View>
       </View>
