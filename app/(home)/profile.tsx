@@ -2,13 +2,14 @@ import { View, StyleSheet, ScrollView } from 'react-native';
 import { router } from "expo-router";
 import LinkText from "../../components/ui/LinkText";
 import CustomText from "../../components/ui/CustomText";
+import { Ionicons } from '@expo/vector-icons';
 
 const Profile = () => {
   return (
     <ScrollView style={styles.container}>
       <View style={styles.profileHeader}>
         <View style={styles.avatar}>
-          <CustomText variant="large" dark={true}>👤</CustomText>
+          <Ionicons name="person" size={50} color="#000" />
         </View>
         <CustomText variant="large" dark={true}>
           Usuario Demo
@@ -40,21 +41,21 @@ const Profile = () => {
         
         <View style={styles.artistItem}>
           <View style={styles.artistIcon}>
-            <CustomText variant="medium" dark={true}>🎤</CustomText>
+            <Ionicons name="mic" size={24} color="#fff" />
           </View>
           <CustomText variant="medium" dark={true}>The Weeknd</CustomText>
         </View>
 
         <View style={styles.artistItem}>
           <View style={styles.artistIcon}>
-            <CustomText variant="medium" dark={true}>🎸</CustomText>
+            <Ionicons name="musical-note" size={24} color="#fff" />
           </View>
           <CustomText variant="medium" dark={true}>Ed Sheeran</CustomText>
         </View>
 
         <View style={styles.artistItem}>
           <View style={styles.artistIcon}>
-            <CustomText variant="medium" dark={true}>🎹</CustomText>
+            <Ionicons name="radio" size={24} color="#fff" />
           </View>
           <CustomText variant="medium" dark={true}>Queen</CustomText>
         </View>

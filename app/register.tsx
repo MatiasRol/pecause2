@@ -7,15 +7,20 @@ import InputField from "../components/ui/InputField";
 import LinkText from "../components/ui/LinkText";
 import "../global.css";
 
-export default function Index() {
+export default function Register() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [haIniciadoSesion, setHaIniciadoSesion] = useState(false);
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [seHaRegistrado, setSeHaRegistrado] = useState(false);
 
-  function handleLogin() {
-    if (!haIniciadoSesion) {
-      alert("Logeando");
-      setHaIniciadoSesion(true);
+  function handleRegister() {
+    if (!seHaRegistrado) {
+      if (password !== confirmPassword) {
+        alert("Las contraseñas no coinciden");
+        return;
+      }
+      alert("Registrando");
+      setSeHaRegistrado(true);
       router.push('/(home)/principal');
     }
   }
@@ -27,7 +32,7 @@ export default function Index() {
       resizeMode="cover"
     >
       <View className="bg-black/50 p-10 rounded-2xl w-80 items-center shadow-xl">
-        <CustomText variant="large" dark={true}>Bienvenido</CustomText>
+        <CustomText variant="large" dark={true}>Crear Cuenta</CustomText>
 
         <InputField 
           placeholder="Correo electrónico" 
@@ -40,23 +45,21 @@ export default function Index() {
           secureTextEntry 
           onChangeText={setPassword} 
         />
+        <InputField 
+          placeholder="Confirmar contraseña" 
+          value={confirmPassword} 
+          secureTextEntry 
+          onChangeText={setConfirmPassword} 
+        />
 
-        <Button title="Iniciar sesión" onPress={handleLogin} />
+        <Button title="Registrarse" onPress={handleRegister} />
 
         <View className="flex-row justify-between w-full mt-4">
-          <CustomText variant="small" dark={true}>¿No tienes cuenta?</CustomText>
+          <CustomText variant="small" dark={true}>¿Ya tienes cuenta?</CustomText>
           <LinkText 
-            text="Registrarse" 
+            text="Iniciar sesión" 
             dark={true}  // Cambiado a true para que sea blanco
-            onPress={() => router.push('/register')} 
-          />
-        </View>
-
-        <View className="mt-2">
-          <LinkText 
-            text="¿Olvidaste tu contraseña?" 
-            dark={true} 
-            onPress={() => console.log("Recuperar contraseña")} 
+            onPress={() => router.push('/')} 
           />
         </View>
       </View>

@@ -1,7 +1,28 @@
+import { Ionicons } from '@expo/vector-icons';
+import * as NavigationBar from 'expo-navigation-bar';
 import { Tabs } from "expo-router";
-import { Text } from "react-native";
+import { useEffect } from 'react';
+import { Platform, StatusBar } from 'react-native';
 
 export default function HomeLayout() {
+  useEffect(() => {
+    if (Platform.OS === 'android') {
+      // Ocultar barra de navegación
+      NavigationBar.setVisibilityAsync('hidden');
+      NavigationBar.setBehaviorAsync('overlay-swipe');
+      
+      // Ocultar barra de estado
+      StatusBar.setHidden(true);
+    }
+    
+    return () => {
+      if (Platform.OS === 'android') {
+        NavigationBar.setVisibilityAsync('visible');
+        StatusBar.setHidden(false);
+      }
+    };
+  }, []);
+
   return (
     <Tabs
       screenOptions={{
@@ -26,27 +47,36 @@ export default function HomeLayout() {
       <Tabs.Screen 
         name="principal" 
         options={{ 
-          title: "Home",
-          tabBarIcon: ({ color }) => (
-            <Text style={{ fontSize: 24 }}>🏠</Text>
+          title: "Dashboard",
+          tabBarIcon: ({ color, size }) => (
+            <Ionicons name="home" size={size} color={color} />
+          ),
+        }} 
+      />
+      <Tabs.Screen 
+        name="nowplaying" 
+        options={{ 
+          title: "Now Playing",
+          tabBarIcon: ({ color, size }) => (
+            <Ionicons name="play-circle" size={size} color={color} />
           ),
         }} 
       />
       <Tabs.Screen 
         name="profile" 
         options={{ 
-          title: "Perfil",
-          tabBarIcon: ({ color }) => (
-            <Text style={{ fontSize: 24 }}>👤</Text>
+          title: "Profile",
+          tabBarIcon: ({ color, size }) => (
+            <Ionicons name="person" size={size} color={color} />
           ),
         }} 
       />
       <Tabs.Screen 
-        name="SettingsScreen" 
+        name="settings" 
         options={{ 
-          title: "Configuración",
-          tabBarIcon: ({ color }) => (
-            <Text style={{ fontSize: 24 }}>⚙️</Text>
+          title: "Settings",
+          tabBarIcon: ({ color, size }) => (
+            <Ionicons name="settings" size={size} color={color} />
           ),
         }} 
       />

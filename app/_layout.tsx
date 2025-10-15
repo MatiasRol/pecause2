@@ -2,18 +2,15 @@ import { Stack } from "expo-router";
 
 export default function RootLayout() {
   return (
-    <Stack>
+    <Stack screenOptions={{ headerShown: false }}>
+      <Stack.Screen name="index" />
+      <Stack.Screen name="register" />
+      <Stack.Screen name="(home)" />
       <Stack.Screen 
-        name="index" 
+        name="+not-found" 
         options={{ 
-          title: "Bienvenido",
-          headerShown: false  // Sin header en el index
-        }} 
-      />
-      <Stack.Screen 
-        name="(home)" 
-        options={{ 
-          headerShown: false  // El grupo (home) maneja sus propios headers
+          title: "404 - Not Found",
+          headerShown: true 
         }} 
       />
     </Stack>

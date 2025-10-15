@@ -1,15 +1,17 @@
 import { router } from "expo-router";
 import React from 'react';
-import { ScrollView, StyleSheet, View } from 'react-native';
+import { View, StyleSheet, ScrollView } from 'react-native';
 import CustomText from "../../components/ui/CustomText";
 import LinkText from "../../components/ui/LinkText";
+import { Ionicons } from '@expo/vector-icons';
 
 const SettingsScreen = () => {
   return (
     <ScrollView style={styles.container}>
       <View style={styles.header}>
+        <Ionicons name="settings" size={32} color="#fff" />
         <CustomText variant="large" dark={true}>
-          ⚙️ Configuración
+          Configuración
         </CustomText>
       </View>
 
@@ -19,15 +21,18 @@ const SettingsScreen = () => {
         </CustomText>
         
         <View style={styles.settingItem}>
-          <CustomText variant="medium" dark={true}>👤 Editar perfil</CustomText>
+          <Ionicons name="person-circle-outline" size={24} color="#fff" style={styles.itemIcon} />
+          <CustomText variant="medium" dark={true}>Editar perfil</CustomText>
         </View>
         
         <View style={styles.settingItem}>
-          <CustomText variant="medium" dark={true}>🔒 Cambiar contraseña</CustomText>
+          <Ionicons name="lock-closed-outline" size={24} color="#fff" style={styles.itemIcon} />
+          <CustomText variant="medium" dark={true}>Cambiar contraseña</CustomText>
         </View>
         
         <View style={styles.settingItem}>
-          <CustomText variant="medium" dark={true}>📧 Correo electrónico</CustomText>
+          <Ionicons name="mail-outline" size={24} color="#fff" style={styles.itemIcon} />
+          <CustomText variant="medium" dark={true}>Correo electrónico</CustomText>
         </View>
       </View>
 
@@ -37,22 +42,26 @@ const SettingsScreen = () => {
         </CustomText>
         
         <View style={styles.settingItem}>
-          <CustomText variant="medium" dark={true}>🔔 Notificaciones</CustomText>
+          <Ionicons name="notifications-outline" size={24} color="#fff" style={styles.itemIcon} />
+          <CustomText variant="medium" dark={true}>Notificaciones</CustomText>
           <CustomText variant="small" dark={true}>Activadas</CustomText>
         </View>
         
         <View style={styles.settingItem}>
-          <CustomText variant="medium" dark={true}>🎵 Calidad de audio</CustomText>
+          <Ionicons name="musical-notes-outline" size={24} color="#fff" style={styles.itemIcon} />
+          <CustomText variant="medium" dark={true}>Calidad de audio</CustomText>
           <CustomText variant="small" dark={true}>Alta</CustomText>
         </View>
         
         <View style={styles.settingItem}>
-          <CustomText variant="medium" dark={true}>📱 Descargas</CustomText>
+          <Ionicons name="download-outline" size={24} color="#fff" style={styles.itemIcon} />
+          <CustomText variant="medium" dark={true}>Descargas</CustomText>
           <CustomText variant="small" dark={true}>WiFi únicamente</CustomText>
         </View>
 
         <View style={styles.settingItem}>
-          <CustomText variant="medium" dark={true}>🌙 Tema oscuro</CustomText>
+          <Ionicons name="moon-outline" size={24} color="#fff" style={styles.itemIcon} />
+          <CustomText variant="medium" dark={true}>Tema oscuro</CustomText>
           <CustomText variant="small" dark={true}>Activado</CustomText>
         </View>
       </View>
@@ -63,16 +72,19 @@ const SettingsScreen = () => {
         </CustomText>
         
         <View style={styles.settingItem}>
-          <CustomText variant="medium" dark={true}>ℹ️ Versión</CustomText>
+          <Ionicons name="information-circle-outline" size={24} color="#fff" style={styles.itemIcon} />
+          <CustomText variant="medium" dark={true}>Versión</CustomText>
           <CustomText variant="small" dark={true}>1.0.0</CustomText>
         </View>
         
         <View style={styles.settingItem}>
-          <CustomText variant="medium" dark={true}>📄 Términos y condiciones</CustomText>
+          <Ionicons name="document-text-outline" size={24} color="#fff" style={styles.itemIcon} />
+          <CustomText variant="medium" dark={true}>Términos y condiciones</CustomText>
         </View>
         
         <View style={styles.settingItem}>
-          <CustomText variant="medium" dark={true}>🔐 Privacidad</CustomText>
+          <Ionicons name="shield-checkmark-outline" size={24} color="#fff" style={styles.itemIcon} />
+          <CustomText variant="medium" dark={true}>Privacidad</CustomText>
         </View>
       </View>
 
@@ -100,6 +112,9 @@ const styles = StyleSheet.create({
     backgroundColor: '#1DB954',
     alignItems: 'center',
     paddingVertical: 30,
+    flexDirection: 'row',
+    justifyContent: 'center',
+    gap: 10,
   },
   section: {
     padding: 20,
@@ -114,6 +129,9 @@ const styles = StyleSheet.create({
     backgroundColor: '#1e1e1e',
     borderRadius: 10,
     marginTop: 10,
+  },
+  itemIcon: {
+    marginRight: 10,
   },
   linkContainer: {
     alignItems: 'center',
