@@ -1,10 +1,33 @@
-import { View, StyleSheet, ScrollView } from 'react-native';
+import { View, StyleSheet, ScrollView, Image } from 'react-native';
 import { router } from "expo-router";
 import LinkText from "../../components/ui/LinkText";
 import CustomText from "../../components/ui/CustomText";
 import { Ionicons } from '@expo/vector-icons';
 
 const Profile = () => {
+  const artistasFavoritos = [
+    {
+      id: 1,
+      nombre: "Eladio Carrion",
+      imagen: require("../../assets/images/eladioP.png")
+    },
+    {
+      id: 2,
+      nombre: "Bad Bunny",
+      imagen: require("../../assets/images/BadBo.png")
+    },
+    {
+      id: 3,
+      nombre: "Alvaro Dias",
+      imagen: require("../../assets/images/AlvaritoP.png")
+    },
+    {
+      id: 2,
+      nombre: "JUNIOR H",
+      imagen: require("../../assets/images/junniorHP.png")
+    },
+  ];
+
   return (
     <ScrollView style={styles.container}>
       <View style={styles.profileHeader}>
@@ -39,26 +62,17 @@ const Profile = () => {
           Tus artistas favoritos
         </CustomText>
         
-        <View style={styles.artistItem}>
-          <View style={styles.artistIcon}>
-            <Ionicons name="mic" size={24} color="#fff" />
+        {artistasFavoritos.map((artista) => (
+          <View key={artista.id} style={styles.artistItem}>
+            <View style={styles.artistImageContainer}>
+              <Image 
+                source={artista.imagen} 
+                style={styles.artistImage}
+              />
+            </View>
+            <CustomText variant="medium" dark={true}>{artista.nombre}</CustomText>
           </View>
-          <CustomText variant="medium" dark={true}>The Weeknd</CustomText>
-        </View>
-
-        <View style={styles.artistItem}>
-          <View style={styles.artistIcon}>
-            <Ionicons name="musical-note" size={24} color="#fff" />
-          </View>
-          <CustomText variant="medium" dark={true}>Ed Sheeran</CustomText>
-        </View>
-
-        <View style={styles.artistItem}>
-          <View style={styles.artistIcon}>
-            <Ionicons name="radio" size={24} color="#fff" />
-          </View>
-          <CustomText variant="medium" dark={true}>Queen</CustomText>
-        </View>
+        ))}
       </View>
 
       <View style={styles.linkContainer}>
@@ -113,14 +127,18 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1,
     borderBottomColor: '#2a2a2a',
   },
-  artistIcon: {
-    width: 50,
-    height: 50,
-    backgroundColor: '#282828',
-    borderRadius: 25,
-    justifyContent: 'center',
-    alignItems: 'center',
+  artistImageContainer: {
+    width: 60,
+    height: 60,
+    borderRadius: 30,
     marginRight: 15,
+    overflow: 'hidden',
+    backgroundColor: '#282828',
+  },
+  artistImage: {
+    width: '100%',
+    height: '100%',
+    resizeMode: 'cover',
   },
   linkContainer: {
     alignItems: 'center',
