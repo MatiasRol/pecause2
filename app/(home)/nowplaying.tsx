@@ -1,19 +1,68 @@
 import { Ionicons } from '@expo/vector-icons';
 import { useFocusEffect } from '@react-navigation/native';
+import { Audio } from 'expo-av';
 import * as NavigationBar from 'expo-navigation-bar';
-import { useCallback } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { Image, Platform, StatusBar, StyleSheet, View } from 'react-native';
 import CustomText from "../../components/ui/CustomText";
 
 const NowPlaying = () => {
+  const [sound, setSound] = useState<Audio.Sound | null>(null);
+  const [isPlaying, setIsPlaying] = useState(false);
+  const [progress, setProgress] = useState(0); // porcentaje de reproducción
+
   useFocusEffect(
     useCallback(() => {
       if (Platform.OS === 'android') {
         NavigationBar.setVisibilityAsync('hidden');
         StatusBar.setHidden(true, 'fade');
       }
+
+      return () => {
+        if (Platform.OS === 'android') {
+          NavigationBar.setVisibilityAsync('visible');
+          StatusBar.setHidden(false, 'fade');
+        }
+      };
     }, [])
   );
+
+  async function playSound() {
+    if (!sound) {
+      const { sound: newSound } = await Audio.Sound.createAsync(
+        require("../../assets/images/Vuelve Candy B.mp3") 
+      );
+      setSound(newSound);
+
+      newSound.setOnPlaybackStatusUpdate((status) => {
+        if (status.isLoaded && status.durationMillis) {
+          setProgress(status.positionMillis / status.durationMillis);
+          if (status.didJustFinish) setIsPlaying(false);
+        }
+      });
+
+      await newSound.playAsync();
+      setIsPlaying(true);
+    } else {
+      await sound.playAsync();
+      setIsPlaying(true);
+    }
+  }
+
+  async function pauseSound() {
+    if (sound) {
+      await sound.pauseAsync();
+      setIsPlaying(false);
+    }
+  }
+
+  useEffect(() => {
+    return () => {
+      if (sound) {
+        sound.unloadAsync(); // liberar memoria
+      }
+    };
+  }, [sound]);
 
   return (
     <View style={styles.container}>
@@ -40,22 +89,26 @@ const NowPlaying = () => {
 
       <View style={styles.progressContainer}>
         <View style={styles.progressBar}>
-          <View style={styles.progressFill} />
+          <View style={[styles.progressFill, { width: `${progress * 100}%` }]} />
         </View>
         <View style={styles.timeContainer}>
           <CustomText variant="small" dark={true}>
-            1:23
+            {sound && isPlaying ? Math.floor(progress * 3) + ":23" : "0:00"}
           </CustomText>
-          <CustomText variant="small" dark={true}>
-            3:45
-          </CustomText>
+          <CustomText variant="small" dark={true}>3:45</CustomText>
         </View>
       </View>
 
       <View style={styles.controls}>
-        <Ionicons name="play-skip-back" size={40} color="#fff" />
-        <Ionicons name="pause-circle" size={70} color="#9b5de5" />
-        <Ionicons name="play-skip-forward" size={40} color="#fff" />
+        <Ionicons name="play-skip-back" size={40} color="#fff" onPress={() => console.log("Anterior")} />
+        
+        {isPlaying ? (
+          <Ionicons name="pause-circle" size={70} color="#9b5de5" onPress={pauseSound} />
+        ) : (
+          <Ionicons name="play-circle" size={70} color="#9b5de5" onPress={playSound} />
+        )}
+        
+        <Ionicons name="play-skip-forward" size={40} color="#fff" onPress={() => console.log("Siguiente")} />
       </View>
     </View>
   );
@@ -99,7 +152,6 @@ const styles = StyleSheet.create({
   },
   progressFill: {
     height: '100%',
-    width: '40%',
     backgroundColor: '#9b5de5',
     borderRadius: 2,
   },
