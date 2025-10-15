@@ -2,7 +2,7 @@ import { Ionicons } from '@expo/vector-icons';
 import { useFocusEffect } from '@react-navigation/native';
 import * as NavigationBar from 'expo-navigation-bar';
 import { useCallback } from 'react';
-import { Image, Platform, ScrollView, StatusBar, StyleSheet, View } from 'react-native';
+import { Image, ImageBackground, Platform, ScrollView, StatusBar, StyleSheet, View } from 'react-native';
 import CustomText from "../../components/ui/CustomText";
 
 const Principal = () => {
@@ -16,143 +16,109 @@ const Principal = () => {
   );
 
   const canciones = [
-    { 
-      id: 1, 
-      titulo: "LAS NOCHES", 
-      artista: "Junior H", 
-      imagen: require("../../assets/images/LASNOCHES.png"),
-      esImagen: true
-    },
-    { 
-      id: 2, 
-      titulo: "Habibi", 
-      artista: "JHAYCO", 
-      imagen: require("../../assets/images/Habibi.png"),
-      esImagen: true
-    },
-    { 
-      id: 3, 
-      titulo: "Luego",
-      artista: "Eladio Carrion",
-      imagen: require("../../assets/images/ArchivosEladio.png"),
-      esImagen: true
-    },
-    { 
-      id: 4, 
-      titulo: "Conversaciones",
-      artista: "Eladio Carrion",
-      imagen: require("../../assets/images/ArchivosEladio.png"),
-      esImagen: true
-    },
+    { id: 1, titulo: "LAS NOCHES", artista: "Junior H", imagen: require("../../assets/images/LASNOCHES.png"), esImagen: true },
+    { id: 2, titulo: "Habibi", artista: "JHAYCO", imagen: require("../../assets/images/Habibi.png"), esImagen: true },
+    { id: 3, titulo: "Luego", artista: "Eladio Carrion", imagen: require("../../assets/images/ArchivosEladio.png"), esImagen: true },
+    { id: 4, titulo: "Conversaciones", artista: "Eladio Carrion", imagen: require("../../assets/images/ArchivosEladio.png"), esImagen: true },
   ];
 
   return (
-    <ScrollView style={styles.container}>
-      {/* Sección Info */}
-      <View style={styles.infoSection}>
-        <Ionicons name="musical-notes" size={32} color="#fff" />
-        <CustomText variant="large" dark={true}>
-          Dashboard Musical
-        </CustomText>
-        <CustomText variant="small" dark={true}>
-          Tu biblioteca personal
-        </CustomText>
-      </View>
+    <ImageBackground
+      source={require("../../assets/images/fondo1.png")}
+      style={styles.background}
+      resizeMode="cover"
+    >
+      <ScrollView contentContainerStyle={styles.container}>
 
-      <View style={styles.header}>
-        <CustomText variant="large" dark={true}>
-          ¡Hola!
-        </CustomText>
-        <Ionicons name="hand-right" size={24} color="#fff" style={styles.icon} />
-        <CustomText variant="small" dark={true}>
-          ¿Qué quieres escuchar hoy?
-        </CustomText>
-      </View>
-
-      <View style={styles.section}>
-        <CustomText variant="medium" dark={true}>
-          Reproduciendo 
-        </CustomText>
-        
-        <View style={styles.recentCard}>
-          <View style={styles.albumCover}>
-            <Image 
-              source={require("../../assets/images/ArchivosEladio.png")} 
-              style={styles.albumImage}
-            />
-          </View>
-          <View style={styles.trackInfo}>
-            <CustomText variant="medium" dark={true}>
-              Vuelve B
-            </CustomText>
-            <CustomText variant="small" dark={true}>
-              Eladio Carrion
-            </CustomText>
-          </View>
+        <View style={styles.purpleBox}>
+          <Ionicons name="musical-notes" size={32} color="#fff" />
+          <CustomText variant="large" dark={true}>PBA MUSIC</CustomText>
+          <CustomText variant="small" dark={true}>Tu biblioteca personal</CustomText>
         </View>
-      </View>
 
-      <View style={styles.section}>
-        <CustomText variant="medium" dark={true}>
-          Canciones por tipo de música
-        </CustomText>
-        
-        {canciones.map((cancion) => (
-          <View key={cancion.id} style={styles.songItem}>
-            <View style={styles.songIcon}>
-              {cancion.esImagen ? (
-                <Image 
-                  source={cancion.imagen} 
-                  style={styles.songImage}
-                />
-              ) : (
-                <CustomText variant="medium" dark={true}>
-                  {cancion.imagen}
-                </CustomText>
-              )}
-            </View>
-            <View style={styles.songInfo}>
-              <CustomText variant="medium" dark={true}>
-                {cancion.titulo}
-              </CustomText>
-              <CustomText variant="small" dark={true}>
-                {cancion.artista}
-              </CustomText>
-            </View>
-            <Ionicons name="play-circle" size={24} color="#1DB954" />
+        <View style={styles.cuadro}>
+          
+          <View style={styles.header}>
+            <CustomText variant="large" dark={true}>Bienvenido</CustomText>
+            <CustomText variant="large" dark={true}>Mattox</CustomText>
+            <CustomText variant="small" dark={true}>¿Qué quieres escuchar hoy? 😎</CustomText>
           </View>
-        ))}
-      </View>
 
-      <View style={styles.bottomSpacing} />
-    </ScrollView>
+          <View style={styles.section}>
+            <CustomText variant="medium" dark={true}>Reproduciendo</CustomText>
+            <View style={styles.recentCard}>
+              <View style={styles.albumCover}>
+                <Image source={require("../../assets/images/ArchivosEladio.png")} style={styles.albumImage} />
+              </View>
+              <View style={styles.trackInfo}>
+                <CustomText variant="medium" dark={true}>Vuelve B</CustomText>
+                <CustomText variant="small" dark={true}>Eladio Carrion</CustomText>
+              </View>
+            </View>
+          </View>
+
+          <View style={styles.section}>
+            <CustomText variant="medium" dark={true}>Canciones reproducidas recientemente </CustomText>
+            {canciones.map((cancion) => (
+              <View key={cancion.id} style={styles.songItem}>
+                <View style={styles.songIcon}>
+                  {cancion.esImagen ? (
+                    <Image source={cancion.imagen} style={styles.songImage} />
+                  ) : (
+                    <CustomText variant="medium" dark={true}>{cancion.imagen}</CustomText>
+                  )}
+                </View>
+                <View style={styles.songInfo}>
+                  <CustomText variant="medium" dark={true}>{cancion.titulo}</CustomText>
+                  <CustomText variant="small" dark={true}>{cancion.artista}</CustomText>
+                </View>
+                <Ionicons name="play-circle" size={24} color="#9b5de5" />
+              </View>
+            ))}
+          </View>
+
+        </View>
+
+        <View style={styles.bottomSpacing} />
+      </ScrollView>
+    </ImageBackground>
   );
 };
 
 const styles = StyleSheet.create({
-  container: {
+  background: {
     flex: 1,
-    backgroundColor: '#121212',
+    width: "100%",
+    height: "100%",
   },
-  infoSection: {
-    backgroundColor: '#1DB954',
+  container: {
+    paddingBottom: 100,
+    paddingHorizontal: 10,
+  },
+  purpleBox: {
+    backgroundColor: '#9b5de5',
     padding: 20,
+    borderRadius: 12,
     alignItems: 'center',
+    marginHorizontal: 20,
+    marginTop: 20,
+  },
+  cuadro: {
+    backgroundColor: 'rgba(0,0,0,0.6)', 
+    marginHorizontal: 20,
+    borderRadius: 12,
+    padding: 15,
+    marginTop: 15,
   },
   header: {
-    padding: 20,
-    paddingTop: 10,
-  },
-  icon: {
-    marginVertical: 5,
+    paddingBottom: 10,
   },
   section: {
-    padding: 20,
     paddingTop: 10,
   },
   recentCard: {
     flexDirection: 'row',
-    backgroundColor: '#1e1e1e',
+    backgroundColor: '#9b5de5', 
     borderRadius: 12,
     padding: 15,
     marginTop: 15,
@@ -161,7 +127,7 @@ const styles = StyleSheet.create({
   albumCover: {
     width: 60,
     height: 60,
-    backgroundColor: '#1DB954',
+    backgroundColor: '#9b5de5',
     borderRadius: 8,
     overflow: 'hidden',
   },
@@ -205,3 +171,4 @@ const styles = StyleSheet.create({
 });
 
 export default Principal;
+

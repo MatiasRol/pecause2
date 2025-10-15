@@ -14,12 +14,13 @@ const NowPlaying = () => {
       }
     }, [])
   );
+
   return (
     <View style={styles.container}>
       <View style={styles.albumContainer}>
         <View style={styles.albumArt}>
-          <Image 
-            source={require("../../assets/images/ArchivosEladio.png")} 
+          <Image
+            source={require("../../assets/images/ArchivosEladio.png")}
             style={styles.albumImage}
           />
         </View>
@@ -42,14 +43,18 @@ const NowPlaying = () => {
           <View style={styles.progressFill} />
         </View>
         <View style={styles.timeContainer}>
-          <CustomText variant="small" dark={true}>1:23</CustomText>
-          <CustomText variant="small" dark={true}>3:45</CustomText>
+          <CustomText variant="small" dark={true}>
+            1:23
+          </CustomText>
+          <CustomText variant="small" dark={true}>
+            3:45
+          </CustomText>
         </View>
       </View>
 
       <View style={styles.controls}>
         <Ionicons name="play-skip-back" size={40} color="#fff" />
-        <Ionicons name="pause-circle" size={70} color="#1DB954" />
+        <Ionicons name="pause-circle" size={70} color="#9b5de5" />
         <Ionicons name="play-skip-forward" size={40} color="#fff" />
       </View>
     </View>
@@ -70,7 +75,7 @@ const styles = StyleSheet.create({
   albumArt: {
     width: 250,
     height: 250,
-    backgroundColor: '#1DB954',
+    backgroundColor: '#9b5de5',
     borderRadius: 20,
     overflow: 'hidden',
   },
@@ -95,7 +100,7 @@ const styles = StyleSheet.create({
   progressFill: {
     height: '100%',
     width: '40%',
-    backgroundColor: '#1DB954',
+    backgroundColor: '#9b5de5',
     borderRadius: 2,
   },
   timeContainer: {

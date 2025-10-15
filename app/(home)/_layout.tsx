@@ -28,12 +28,12 @@ export default function HomeLayout() {
       screenOptions={{
         tabBarStyle: {
           backgroundColor: '#000',
-          borderTopColor: '#1DB954',
+          borderTopColor: '#9b5de5', // 💜 morado
           borderTopWidth: 1,
           height: 60,
           paddingBottom: 8,
         },
-        tabBarActiveTintColor: '#1DB954',
+        tabBarActiveTintColor: '#9b5de5', // 💜 morado
         tabBarInactiveTintColor: '#b3b3b3',
         headerStyle: {
           backgroundColor: '#000',

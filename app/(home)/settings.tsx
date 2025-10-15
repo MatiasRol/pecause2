@@ -119,7 +119,7 @@ const styles = StyleSheet.create({
   header: {
     padding: 20,
     paddingTop: 10,
-    backgroundColor: '#1DB954',
+    backgroundColor: '#9b5de5',
     alignItems: 'center',
     paddingVertical: 30,
     flexDirection: 'row',

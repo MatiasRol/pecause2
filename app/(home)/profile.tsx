@@ -1,11 +1,10 @@
-import { Ionicons } from '@expo/vector-icons';
+import { useFocusEffect } from '@react-navigation/native';
+import * as NavigationBar from 'expo-navigation-bar';
 import { router } from "expo-router";
-import { Image, ScrollView, StyleSheet, View, Platform, StatusBar } from 'react-native';
+import { useCallback } from 'react';
+import { Image, Platform, ScrollView, StatusBar, StyleSheet, View } from 'react-native';
 import CustomText from "../../components/ui/CustomText";
 import LinkText from "../../components/ui/LinkText";
-import { useFocusEffect } from '@react-navigation/native';
-import { useCallback } from 'react';
-import * as NavigationBar from 'expo-navigation-bar';
 
 const Profile = () => {
   useFocusEffect(
@@ -16,41 +15,26 @@ const Profile = () => {
       }
     }, [])
   );
+
   const artistasFavoritos = [
-    {
-      id: 1,
-      nombre: "Eladio Carrion",
-      imagen: require("../../assets/images/eladioP.png")
-    },
-    {
-      id: 2,
-      nombre: "Bad Bunny",
-      imagen: require("../../assets/images/BadBo.png")
-    },
-    {
-      id: 3,
-      nombre: "Alvaro Dias",
-      imagen: require("../../assets/images/AlvaritoP.png")
-    },
-    {
-      id: 4,
-      nombre: "JUNIOR H",
-      imagen: require("../../assets/images/junniorHP.png")
-    },
+    { id: 1, nombre: "Eladio Carrion", imagen: require("../../assets/images/eladioP.png") },
+    { id: 2, nombre: "Bad Bunny", imagen: require("../../assets/images/BadBo.png") },
+    { id: 3, nombre: "Alvaro Dias", imagen: require("../../assets/images/AlvaritoP.png") },
+    { id: 4, nombre: "JUNIOR H", imagen: require("../../assets/images/junniorHP.png") },
   ];
 
   return (
     <ScrollView style={styles.container}>
       <View style={styles.profileHeader}>
+        {/* Imagen de perfil en vez del icono */}
         <View style={styles.avatar}>
-          <Ionicons name="person" size={50} color="#000" />
+          <Image 
+            source={require("../../assets/images/perfil.png")} 
+            style={styles.avatarImage} 
+          />
         </View>
-        <CustomText variant="large" dark={true}>
-          Mattox0908
-        </CustomText>
-        <CustomText variant="small" dark={true}>
-          roldanmatias441@gmail.com
-        </CustomText>
+        <CustomText variant="large" dark={true}>Mattox0908</CustomText>
+        <CustomText variant="small" dark={true}>roldanmatias441@gmail.com</CustomText>
       </View>
 
       <View style={styles.statsContainer}>
@@ -69,17 +53,11 @@ const Profile = () => {
       </View>
 
       <View style={styles.section}>
-        <CustomText variant="medium" dark={true}>
-          Tus artistas favoritos
-        </CustomText>
-        
+        <CustomText variant="medium" dark={true}>Tus artistas favoritos</CustomText>
         {artistasFavoritos.map((artista) => (
           <View key={artista.id} style={styles.artistItem}>
             <View style={styles.artistImageContainer}>
-              <Image 
-                source={artista.imagen} 
-                style={styles.artistImage}
-              />
+              <Image source={artista.imagen} style={styles.artistImage} />
             </View>
             <CustomText variant="medium" dark={true}>{artista.nombre}</CustomText>
           </View>
@@ -87,11 +65,7 @@ const Profile = () => {
       </View>
 
       <View style={styles.linkContainer}>
-        <LinkText 
-          text="Cerrar Sesión" 
-          dark={true} 
-          onPress={() => router.push('/')} 
-        />
+        <LinkText text="Cerrar Sesión" dark={true} onPress={() => router.push('/')} />
       </View>
 
       <View style={styles.bottomSpacing} />
@@ -100,64 +74,67 @@ const Profile = () => {
 };
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#121212',
+  container: { 
+    flex: 1, 
+    backgroundColor: '#121212' 
   },
-  profileHeader: {
-    alignItems: 'center',
-    paddingVertical: 30,
-    backgroundColor: '#1DB954',
+  profileHeader: { 
+    alignItems: 'center', 
+    paddingVertical: 30, 
+    backgroundColor: '#9b5de5' 
   },
-  avatar: {
-    width: 100,
-    height: 100,
-    backgroundColor: '#fff',
-    borderRadius: 50,
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginBottom: 15,
+  avatar: { 
+    width: 100, 
+    height: 100, 
+    borderRadius: 50, 
+    overflow: 'hidden', 
+    marginBottom: 15 
   },
-  statsContainer: {
-    flexDirection: 'row',
-    justifyContent: 'space-around',
-    paddingVertical: 25,
-    backgroundColor: '#1e1e1e',
-    marginVertical: 20,
+  avatarImage: { 
+    width: '100%', 
+    height: '100%', 
+    resizeMode: 'cover' 
   },
-  statBox: {
-    alignItems: 'center',
+  statsContainer: { 
+    flexDirection: 'row', 
+    justifyContent: 'space-around', 
+    paddingVertical: 25, 
+    backgroundColor: '#1e1e1e', 
+    marginVertical: 20 
   },
-  section: {
-    padding: 20,
+  statBox: { 
+    alignItems: 'center' 
   },
-  artistItem: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    paddingVertical: 15,
-    borderBottomWidth: 1,
-    borderBottomColor: '#2a2a2a',
+  section: { 
+    padding: 20 
   },
-  artistImageContainer: {
-    width: 60,
-    height: 60,
-    borderRadius: 30,
-    marginRight: 15,
-    overflow: 'hidden',
-    backgroundColor: '#282828',
+  artistItem: { 
+    flexDirection: 'row', 
+    alignItems: 'center', 
+    paddingVertical: 15, 
+    borderBottomWidth: 1, 
+    borderBottomColor: '#2a2a2a' 
   },
-  artistImage: {
-    width: '100%',
-    height: '100%',
-    resizeMode: 'cover',
+  artistImageContainer: { 
+    width: 60, 
+    height: 60, 
+    borderRadius: 30, 
+    marginRight: 15, 
+    overflow: 'hidden', 
+    backgroundColor: '#282828' 
   },
-  linkContainer: {
-    alignItems: 'center',
-    marginTop: 30,
-    paddingVertical: 20,
+  artistImage: { 
+    width: '100%', 
+    height: '100%', 
+    resizeMode: 'cover' 
   },
-  bottomSpacing: {
-    height: 100,
+  linkContainer: { 
+    alignItems: 'center', 
+    marginTop: 30, 
+    paddingVertical: 20 
+  },
+  bottomSpacing: { 
+    height: 100 
   },
 });
 

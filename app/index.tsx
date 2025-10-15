@@ -1,6 +1,6 @@
 import { router } from "expo-router";
 import React, { useState } from "react";
-import { ImageBackground, StyleSheet, View } from "react-native";
+import { ImageBackground, StyleSheet, View, SafeAreaView } from "react-native";
 import Button from "../components/ui/Button";
 import CustomText from "../components/ui/CustomText";
 import InputField from "../components/ui/InputField";
@@ -16,66 +16,79 @@ export default function Index() {
     if (!haIniciadoSesion) {
       alert("Logeando");
       setHaIniciadoSesion(true);
-      router.push('/(home)/principal');
+      router.push("/(home)/principal");
     }
   }
 
   return (
-    <ImageBackground
-      source={require("../assets/images/SextoElemento.png")}
-      style={styles.background}
-      resizeMode="cover"
-      imageStyle={styles.image}
-    >
-      <View className="bg-black/50 p-10 rounded-2xl w-80 items-center shadow-xl">
-        <CustomText variant="large" dark={true}>Bienvenido</CustomText>
+    <SafeAreaView style={styles.container}>
+      <ImageBackground
+        source={require("../assets/images/inicio.png")}
+        style={styles.background}
+        resizeMode="cover"
+      >
+        <View style={styles.overlay}>
+          <CustomText variant="large" dark={true}>
+            Bienvenido
+          </CustomText>
 
-        <InputField 
-          placeholder="Correo electrónico" 
-          value={email} 
-          onChangeText={setEmail} 
-        />
-        <InputField 
-          placeholder="Contraseña" 
-          value={password} 
-          secureTextEntry 
-          onChangeText={setPassword} 
-        />
-
-        <Button title="Iniciar sesión" onPress={handleLogin} />
-
-        <View className="flex-row justify-between w-full mt-4">
-          <CustomText variant="small" dark={true}>¿No tienes cuenta?</CustomText>
-          <LinkText 
-            text="Registrarse" 
-            dark={true}
-            onPress={() => router.push('/register')} 
+          <InputField
+            placeholder="Correo electrónico"
+            value={email}
+            onChangeText={setEmail}
           />
-        </View>
-
-        <View className="mt-2">
-          <LinkText 
-            text="¿Olvidaste tu contraseña?" 
-            dark={true} 
-            onPress={() => console.log("Recuperar contraseña")} 
+          <InputField
+            placeholder="Contraseña"
+            value={password}
+            secureTextEntry
+            onChangeText={setPassword}
           />
+
+          <Button title="Iniciar sesión" onPress={handleLogin} />
+
+          <View className="flex-row justify-between w-full mt-4">
+            <CustomText variant="small" dark={true}>
+              ¿No tienes cuenta?
+            </CustomText>
+            <LinkText
+              text="Registrarse"
+              dark={true}
+              onPress={() => router.push("/register")}
+            />
+          </View>
+
+          <View className="mt-2">
+            <LinkText
+              text="¿Olvidaste tu contraseña?"
+              dark={true}
+              onPress={() => console.log("Recuperar contraseña")}
+            />
+          </View>
         </View>
-      </View>
-    </ImageBackground>
+      </ImageBackground>
+    </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
   background: {
     flex: 1,
-    width: '100%',
-    height: '100%',
-    justifyContent: 'flex-start',
-    alignItems: 'center',
-    paddingTop: 80,
+    width: "100%",
+    height: "100%",
+    justifyContent: "center",
+    alignItems: "center",
   },
-  image: {
-    width: '100%',
-    height: '100%',
+  overlay: {
+    backgroundColor: "rgba(0,0,0,0.5)",
+    padding: 30,
+    borderRadius: 20,
+    width: 320,
+    alignItems: "center",
+    shadowColor: "#000",
+    shadowOpacity: 0.3,
+    shadowRadius: 10,
   },
 });
