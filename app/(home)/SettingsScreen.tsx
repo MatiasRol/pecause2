@@ -1,95 +1,82 @@
 import { router } from "expo-router";
 import React from 'react';
-import { View, StyleSheet, ScrollView } from 'react-native';
+import { ScrollView, StyleSheet, View } from 'react-native';
 import CustomText from "../../components/ui/CustomText";
 import LinkText from "../../components/ui/LinkText";
 
 const SettingsScreen = () => {
   return (
     <ScrollView style={styles.container}>
-      {/* Header */}
       <View style={styles.header}>
         <CustomText variant="large" dark={true}>
           ⚙️ Configuración
         </CustomText>
       </View>
 
-      {/* Sección Cuenta */}
       <View style={styles.section}>
-        <CustomText variant="medium" dark={false}>
+        <CustomText variant="medium" dark={true}>
           Cuenta
         </CustomText>
         
         <View style={styles.settingItem}>
-          <CustomText variant="medium" dark={false}>👤 Editar perfil</CustomText>
+          <CustomText variant="medium" dark={true}>👤 Editar perfil</CustomText>
         </View>
         
         <View style={styles.settingItem}>
-          <CustomText variant="medium" dark={false}>🔒 Cambiar contraseña</CustomText>
+          <CustomText variant="medium" dark={true}>🔒 Cambiar contraseña</CustomText>
         </View>
         
         <View style={styles.settingItem}>
-          <CustomText variant="medium" dark={false}>📧 Correo electrónico</CustomText>
+          <CustomText variant="medium" dark={true}>📧 Correo electrónico</CustomText>
         </View>
       </View>
 
-      {/* Sección Preferencias */}
       <View style={styles.section}>
-        <CustomText variant="medium" dark={false}>
+        <CustomText variant="medium" dark={true}>
           Preferencias
         </CustomText>
         
         <View style={styles.settingItem}>
-          <CustomText variant="medium" dark={false}>🔔 Notificaciones</CustomText>
-          <CustomText variant="small" dark={false}>Activadas</CustomText>
+          <CustomText variant="medium" dark={true}>🔔 Notificaciones</CustomText>
+          <CustomText variant="small" dark={true}>Activadas</CustomText>
         </View>
         
         <View style={styles.settingItem}>
-          <CustomText variant="medium" dark={false}>🎵 Calidad de audio</CustomText>
-          <CustomText variant="small" dark={false}>Alta</CustomText>
+          <CustomText variant="medium" dark={true}>🎵 Calidad de audio</CustomText>
+          <CustomText variant="small" dark={true}>Alta</CustomText>
         </View>
         
         <View style={styles.settingItem}>
-          <CustomText variant="medium" dark={false}>📱 Descargas</CustomText>
-          <CustomText variant="small" dark={false}>WiFi únicamente</CustomText>
+          <CustomText variant="medium" dark={true}>📱 Descargas</CustomText>
+          <CustomText variant="small" dark={true}>WiFi únicamente</CustomText>
         </View>
 
         <View style={styles.settingItem}>
-          <CustomText variant="medium" dark={false}>🌙 Tema oscuro</CustomText>
-          <CustomText variant="small" dark={false}>Activado</CustomText>
+          <CustomText variant="medium" dark={true}>🌙 Tema oscuro</CustomText>
+          <CustomText variant="small" dark={true}>Activado</CustomText>
         </View>
       </View>
 
-      {/* Sección Acerca de */}
       <View style={styles.section}>
-        <CustomText variant="medium" dark={false}>
+        <CustomText variant="medium" dark={true}>
           Acerca de
         </CustomText>
         
         <View style={styles.settingItem}>
-          <CustomText variant="medium" dark={false}>ℹ️ Versión</CustomText>
-          <CustomText variant="small" dark={false}>1.0.0</CustomText>
+          <CustomText variant="medium" dark={true}>ℹ️ Versión</CustomText>
+          <CustomText variant="small" dark={true}>1.0.0</CustomText>
         </View>
         
         <View style={styles.settingItem}>
-          <CustomText variant="medium" dark={false}>📄 Términos y condiciones</CustomText>
+          <CustomText variant="medium" dark={true}>📄 Términos y condiciones</CustomText>
         </View>
         
         <View style={styles.settingItem}>
-          <CustomText variant="medium" dark={false}>🔐 Privacidad</CustomText>
+          <CustomText variant="medium" dark={true}>🔐 Privacidad</CustomText>
         </View>
       </View>
 
-      {/* Links de navegación */}
       <View style={styles.linkContainer}>
-        <LinkText 
-          text="← Volver a Principal" 
-          dark={true} 
-          onPress={() => router.push('/(home)/principal')} 
-        />
-      </View>
-
-      <View style={styles.linkSpacing}>
         <LinkText 
           text="Cerrar Sesión" 
           dark={true} 
@@ -131,13 +118,10 @@ const styles = StyleSheet.create({
   linkContainer: {
     alignItems: 'center',
     marginTop: 30,
-  },
-  linkSpacing: {
-    alignItems: 'center',
-    marginTop: 15,
+    paddingVertical: 20,
   },
   bottomSpacing: {
-    height: 50,
+    height: 100,
   },
 });
 

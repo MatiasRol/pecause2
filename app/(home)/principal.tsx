@@ -1,32 +1,54 @@
-import { View, StyleSheet, ScrollView, Image } from 'react-native';
+import { ScrollView, StyleSheet, View, Image } from 'react-native';
 import { router } from "expo-router";
 import CustomText from "../../components/ui/CustomText";
+import LinkText from "../../components/ui/LinkText";
 
 const Principal = () => {
-  // Datos de ejemplo para canciones populares
   const canciones = [
-    { id: 1, titulo: "Blinding Lights", artista: "The Weeknd", imagen: "🎵" },
-    { id: 2, titulo: "Shape of You", artista: "Ed Sheeran", imagen: "🎵" },
-    { id: 3, titulo: "Bohemian Rhapsody", artista: "Queen", imagen: "🎵" },
-    { id: 4, titulo: "Dance Monkey", artista: "Tones and I", imagen: "🎵" },
+    { 
+      id: 1, 
+      titulo: "LAS NOCHES", 
+      artista: "Junior H", 
+      imagen: require("../../assets/images/LASNOCHES.png"),
+      esImagen: true
+    },
+    { 
+      id: 2, 
+      titulo: "Habibi", 
+      artista: "JHAYCO", 
+      imagen: require("../../assets/images/Habibi.png"),
+      esImagen: true
+    },
+    { 
+      id: 3, 
+      titulo: "Luego",
+      artista: "Eladio Carrion",
+      imagen: require("../../assets/images/ArchivosEladio.png"),
+      esImagen: true  // CAMBIADO: debe ser true porque es una imagen
+    },
+    { 
+      id: 4, 
+      titulo: "Conversaciones",
+      artista: "Eladio Carrion",
+      imagen: require("../../assets/images/ArchivosEladio.png"),
+      esImagen: true  // CAMBIADO: debe ser true porque es una imagen
+    },
   ];
 
   return (
     <ScrollView style={styles.container}>
-      {/* Header con saludo */}
       <View style={styles.header}>
-        <CustomText variant="large" dark={false}>
+        <CustomText variant="large" dark={true}>
           ¡Hola! 👋
         </CustomText>
-        <CustomText variant="small" dark={false}>
+        <CustomText variant="small" dark={true}>
           ¿Qué quieres escuchar hoy?
         </CustomText>
       </View>
 
-      {/* Sección de reproducción reciente */}
       <View style={styles.section}>
-        <CustomText variant="medium" dark={false}>
-          Reproducido recientemente
+        <CustomText variant="medium" dark={true}>
+          Reproduciendo 
         </CustomText>
         
         <View style={styles.recentCard}>
@@ -34,43 +56,57 @@ const Principal = () => {
             <CustomText variant="large" dark={true}>🎧</CustomText>
           </View>
           <View style={styles.trackInfo}>
-            <CustomText variant="medium" dark={false}>
-              Starboy
+            <CustomText variant="medium" dark={true}>
+              Vuelve B
             </CustomText>
-            <CustomText variant="small" dark={false}>
-              The Weeknd
+            <CustomText variant="small" dark={true}>
+              Eladio Carrion
             </CustomText>
           </View>
         </View>
       </View>
 
-      {/* Lista de canciones populares */}
       <View style={styles.section}>
-        <CustomText variant="medium" dark={false}>
-          Canciones populares
+        <CustomText variant="medium" dark={true}>
+          Canciones escuchadas recientemente
         </CustomText>
         
         {canciones.map((cancion) => (
           <View key={cancion.id} style={styles.songItem}>
             <View style={styles.songIcon}>
-              <CustomText variant="medium" dark={true}>
-                {cancion.imagen}
-              </CustomText>
+              {cancion.esImagen ? (
+                <Image 
+                  source={cancion.imagen} 
+                  style={styles.songImage}
+                />
+              ) : (
+                <CustomText variant="medium" dark={true}>
+                  {cancion.imagen}
+                </CustomText>
+              )}
             </View>
             <View style={styles.songInfo}>
-              <CustomText variant="medium" dark={false}>
+              <CustomText variant="medium" dark={true}>
                 {cancion.titulo}
               </CustomText>
-              <CustomText variant="small" dark={false}>
+              <CustomText variant="small" dark={true}>
                 {cancion.artista}
               </CustomText>
             </View>
-            <CustomText variant="medium" dark={false}>▶️</CustomText>
+            <CustomText variant="medium" dark={true}>▶️</CustomText>
           </View>
         ))}
       </View>
 
-      {/* Espaciado inferior */}
+      {/* Link para cerrar sesión */}
+      <View style={styles.linkContainer}>
+        <LinkText 
+          text="Cerrar Sesión" 
+          dark={true} 
+          onPress={() => router.push('/')} 
+        />
+      </View>
+
       <View style={styles.bottomSpacing} />
     </ScrollView>
   );
@@ -124,9 +160,20 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     marginRight: 15,
+    overflow: 'hidden',
+  },
+  songImage: {
+    width: '100%',
+    height: '100%',
+    resizeMode: 'cover',
   },
   songInfo: {
     flex: 1,
+  },
+  linkContainer: {
+    alignItems: 'center',
+    marginTop: 30,
+    paddingVertical: 20,
   },
   bottomSpacing: {
     height: 100,

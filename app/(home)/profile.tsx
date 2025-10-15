@@ -6,7 +6,6 @@ import CustomText from "../../components/ui/CustomText";
 const Profile = () => {
   return (
     <ScrollView style={styles.container}>
-      {/* Header del perfil con avatar */}
       <View style={styles.profileHeader}>
         <View style={styles.avatar}>
           <CustomText variant="large" dark={true}>👤</CustomText>
@@ -19,25 +18,23 @@ const Profile = () => {
         </CustomText>
       </View>
 
-      {/* Estadísticas */}
       <View style={styles.statsContainer}>
         <View style={styles.statBox}>
-          <CustomText variant="large" dark={false}>45</CustomText>
-          <CustomText variant="small" dark={false}>Playlists</CustomText>
+          <CustomText variant="large" dark={true}>45</CustomText>
+          <CustomText variant="small" dark={true}>Playlists</CustomText>
         </View>
         <View style={styles.statBox}>
-          <CustomText variant="large" dark={false}>1.2K</CustomText>
-          <CustomText variant="small" dark={false}>Canciones</CustomText>
+          <CustomText variant="large" dark={true}>1.2K</CustomText>
+          <CustomText variant="small" dark={true}>Canciones</CustomText>
         </View>
         <View style={styles.statBox}>
-          <CustomText variant="large" dark={false}>28</CustomText>
-          <CustomText variant="small" dark={false}>Artistas</CustomText>
+          <CustomText variant="large" dark={true}>28</CustomText>
+          <CustomText variant="small" dark={true}>Artistas</CustomText>
         </View>
       </View>
 
-      {/* Sección de preferencias */}
       <View style={styles.section}>
-        <CustomText variant="medium" dark={false}>
+        <CustomText variant="medium" dark={true}>
           Tus artistas favoritos
         </CustomText>
         
@@ -45,34 +42,25 @@ const Profile = () => {
           <View style={styles.artistIcon}>
             <CustomText variant="medium" dark={true}>🎤</CustomText>
           </View>
-          <CustomText variant="medium" dark={false}>The Weeknd</CustomText>
+          <CustomText variant="medium" dark={true}>The Weeknd</CustomText>
         </View>
 
         <View style={styles.artistItem}>
           <View style={styles.artistIcon}>
             <CustomText variant="medium" dark={true}>🎸</CustomText>
           </View>
-          <CustomText variant="medium" dark={false}>Ed Sheeran</CustomText>
+          <CustomText variant="medium" dark={true}>Ed Sheeran</CustomText>
         </View>
 
         <View style={styles.artistItem}>
           <View style={styles.artistIcon}>
             <CustomText variant="medium" dark={true}>🎹</CustomText>
           </View>
-          <CustomText variant="medium" dark={false}>Queen</CustomText>
+          <CustomText variant="medium" dark={true}>Queen</CustomText>
         </View>
       </View>
 
-      {/* Links de navegación */}
       <View style={styles.linkContainer}>
-        <LinkText 
-          text="← Volver a Principal" 
-          dark={true} 
-          onPress={() => router.push('/(home)/principal')} 
-        />
-      </View>
-
-      <View style={styles.linkSpacing}>
         <LinkText 
           text="Cerrar Sesión" 
           dark={true} 
@@ -135,14 +123,11 @@ const styles = StyleSheet.create({
   },
   linkContainer: {
     alignItems: 'center',
-    marginTop: 20,
-  },
-  linkSpacing: {
-    alignItems: 'center',
-    marginTop: 15,
+    marginTop: 30,
+    paddingVertical: 20,
   },
   bottomSpacing: {
-    height: 50,
+    height: 100,
   },
 });
 
