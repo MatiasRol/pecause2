@@ -1,9 +1,19 @@
-import { View, StyleSheet, Image } from 'react-native';
-import { router } from "expo-router";
-import CustomText from "../../components/ui/CustomText";
 import { Ionicons } from '@expo/vector-icons';
+import { useFocusEffect } from '@react-navigation/native';
+import * as NavigationBar from 'expo-navigation-bar';
+import { useCallback } from 'react';
+import { Image, Platform, StatusBar, StyleSheet, View } from 'react-native';
+import CustomText from "../../components/ui/CustomText";
 
 const NowPlaying = () => {
+  useFocusEffect(
+    useCallback(() => {
+      if (Platform.OS === 'android') {
+        NavigationBar.setVisibilityAsync('hidden');
+        StatusBar.setHidden(true, 'fade');
+      }
+    }, [])
+  );
   return (
     <View style={styles.container}>
       <View style={styles.albumContainer}>

@@ -1,11 +1,21 @@
+import { Ionicons } from '@expo/vector-icons';
+import { useFocusEffect } from '@react-navigation/native';
+import * as NavigationBar from 'expo-navigation-bar';
 import { router } from "expo-router";
-import React from 'react';
-import { View, StyleSheet, ScrollView } from 'react-native';
+import React, { useCallback } from 'react';
+import { Platform, ScrollView, StatusBar, StyleSheet, View } from 'react-native';
 import CustomText from "../../components/ui/CustomText";
 import LinkText from "../../components/ui/LinkText";
-import { Ionicons } from '@expo/vector-icons';
 
 const SettingsScreen = () => {
+  useFocusEffect(
+    useCallback(() => {
+      if (Platform.OS === 'android') {
+        NavigationBar.setVisibilityAsync('hidden');
+        StatusBar.setHidden(true, 'fade');
+      }
+    }, [])
+  );
   return (
     <ScrollView style={styles.container}>
       <View style={styles.header}>

@@ -1,27 +1,27 @@
-import { Ionicons } from '@expo/vector-icons';
-import * as NavigationBar from 'expo-navigation-bar';
 import { Tabs } from "expo-router";
-import { useEffect } from 'react';
+import { Ionicons } from '@expo/vector-icons';
+import { useCallback } from 'react';
+import { useFocusEffect } from '@react-navigation/native';
+import * as NavigationBar from 'expo-navigation-bar';
 import { Platform, StatusBar } from 'react-native';
 
 export default function HomeLayout() {
-  useEffect(() => {
-    if (Platform.OS === 'android') {
-      // Ocultar barra de navegación
-      NavigationBar.setVisibilityAsync('hidden');
-      NavigationBar.setBehaviorAsync('overlay-swipe');
-      
-      // Ocultar barra de estado
-      StatusBar.setHidden(true);
-    }
-    
-    return () => {
+  useFocusEffect(
+    useCallback(() => {
       if (Platform.OS === 'android') {
-        NavigationBar.setVisibilityAsync('visible');
-        StatusBar.setHidden(false);
+        NavigationBar.setVisibilityAsync('hidden');
+        NavigationBar.setBehaviorAsync('overlay-swipe');
+        StatusBar.setHidden(true, 'fade');
       }
-    };
-  }, []);
+
+      return () => {
+        if (Platform.OS === 'android') {
+          NavigationBar.setVisibilityAsync('visible');
+          StatusBar.setHidden(false, 'fade');
+        }
+      };
+    }, [])
+  );
 
   return (
     <Tabs

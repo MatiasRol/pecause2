@@ -1,10 +1,21 @@
-import { View, StyleSheet, ScrollView, Image } from 'react-native';
-import { router } from "expo-router";
-import LinkText from "../../components/ui/LinkText";
-import CustomText from "../../components/ui/CustomText";
 import { Ionicons } from '@expo/vector-icons';
+import { router } from "expo-router";
+import { Image, ScrollView, StyleSheet, View, Platform, StatusBar } from 'react-native';
+import CustomText from "../../components/ui/CustomText";
+import LinkText from "../../components/ui/LinkText";
+import { useFocusEffect } from '@react-navigation/native';
+import { useCallback } from 'react';
+import * as NavigationBar from 'expo-navigation-bar';
 
 const Profile = () => {
+  useFocusEffect(
+    useCallback(() => {
+      if (Platform.OS === 'android') {
+        NavigationBar.setVisibilityAsync('hidden');
+        StatusBar.setHidden(true, 'fade');
+      }
+    }, [])
+  );
   const artistasFavoritos = [
     {
       id: 1,
@@ -22,7 +33,7 @@ const Profile = () => {
       imagen: require("../../assets/images/AlvaritoP.png")
     },
     {
-      id: 2,
+      id: 4,
       nombre: "JUNIOR H",
       imagen: require("../../assets/images/junniorHP.png")
     },
@@ -35,10 +46,10 @@ const Profile = () => {
           <Ionicons name="person" size={50} color="#000" />
         </View>
         <CustomText variant="large" dark={true}>
-          Usuario Demo
+          Mattox0908
         </CustomText>
         <CustomText variant="small" dark={true}>
-          usuario@ejemplo.com
+          roldanmatias441@gmail.com
         </CustomText>
       </View>
 

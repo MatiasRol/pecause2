@@ -1,6 +1,6 @@
 import { router } from "expo-router";
 import React, { useState } from "react";
-import { ImageBackground, View } from "react-native";
+import { ImageBackground, StyleSheet, View } from "react-native";
 import Button from "../components/ui/Button";
 import CustomText from "../components/ui/CustomText";
 import InputField from "../components/ui/InputField";
@@ -23,8 +23,9 @@ export default function Index() {
   return (
     <ImageBackground
       source={require("../assets/images/SextoElemento.png")}
-      className="w-screen h-screen flex justify-start items-center pt-20"
+      style={styles.background}
       resizeMode="cover"
+      imageStyle={styles.image}
     >
       <View className="bg-black/50 p-10 rounded-2xl w-80 items-center shadow-xl">
         <CustomText variant="large" dark={true}>Bienvenido</CustomText>
@@ -47,7 +48,7 @@ export default function Index() {
           <CustomText variant="small" dark={true}>¿No tienes cuenta?</CustomText>
           <LinkText 
             text="Registrarse" 
-            dark={true}  // Cambiado a true para que sea blanco
+            dark={true}
             onPress={() => router.push('/register')} 
           />
         </View>
@@ -63,3 +64,18 @@ export default function Index() {
     </ImageBackground>
   );
 }
+
+const styles = StyleSheet.create({
+  background: {
+    flex: 1,
+    width: '100%',
+    height: '100%',
+    justifyContent: 'flex-start',
+    alignItems: 'center',
+    paddingTop: 80,
+  },
+  image: {
+    width: '100%',
+    height: '100%',
+  },
+});
